@@ -55,7 +55,7 @@ var authenticate = function(req, res) {
             function(err, results) {
                 if (err) throw err;
                 application = results;
-                req.app.session(req, res, this);
+                req.app.sessionMiddleware(req, res, this);
             },
             function(err) {
                 if (err) throw err;
@@ -141,7 +141,7 @@ var authorize = function(err, req, res, authenticated, rt, application) {
             if (req.session) {
                 this(null);
             } else {
-                req.app.session(req, res, this);
+                req.app.sessionMiddleware(req, res, this);
             }
         },
         function(err) {
